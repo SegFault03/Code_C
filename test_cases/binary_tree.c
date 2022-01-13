@@ -141,7 +141,25 @@ int height(Node *root)
     else
     return 0;
 }
-
+void topView(Node *root,int rp, int lp, int mr, int ml)
+{
+    if(root)
+    {
+        if(mr==0&&ml==0)
+        printf("%d ",root->d);
+        else if(rp>mr)
+        {
+            printf("%d ",root->d);
+            rp++;
+        }
+        else 
+        {
+             printf("%d ",root->d);
+             lp++;
+        }
+        
+    }
+}
 int main()
 {
     int ch,n,s=0;
@@ -201,7 +219,7 @@ int main()
             // postorder(root);
         }
         printf("\nEnter 1 to insert a node, 2 to search, 3 for traversal, 4 for deletion, 5 to count, 0 to exit:\n");
-        printf("Enter 6 to print leaves, 7 for height\n");
+        printf("Enter 6 to print leaves, 7 for height, 8 to print topview\n");
         scanf("%d", &ch);
     }
     return 0;
