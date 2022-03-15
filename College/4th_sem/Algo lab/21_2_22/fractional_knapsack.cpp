@@ -5,12 +5,12 @@ using namespace std;
 
 
 
-void merge(int a[], int p, int q, int r,int item[])
+void merge(float a[], int p, int q, int r,int item[])
 {
     int n1,n2,i,j,k;
     n1 = q-p+1;
     n2 = r-q;
-    int L[n1+1],R[n2+1];
+    float L[n1+1],R[n2+1];
     int LP[n1],RP[n2];
     for(i=0;i<n1;i++)
     {
@@ -44,7 +44,7 @@ void merge(int a[], int p, int q, int r,int item[])
 
 }
 
-void merge_sort(int *a, int l, int u,int *i)
+void merge_sort(float *a, int l, int u,int *i)
 {
     if(u>l)
     {
@@ -60,7 +60,8 @@ int main()
     int n,bag,temp_wt=0,i;
     cin>>n;
     cin>>bag;
-    int C[n],W[n],ratio[n],item_no[n];
+    int C[n],W[n],item_no[n];
+    float ratio[n];
     for(i=0;i<n;i++)
     {
         cin>>C[i]>>W[i];
@@ -68,11 +69,13 @@ int main()
         item_no[i]=i+1;
     }    
     merge_sort(ratio,0,n,item_no);
-    i=0;
-    while(temp_wt<=bag)
-    {
-        temp_wt+=ratio[i];
-        cout<<
-        i++;
-    }
+    for(i=0;i<n;i++)
+    cout<<item_no[i]<<ratio[i];
+    // i=0;
+    // while(temp_wt<=bag)
+    // {
+    //     temp_wt+=ratio[i];
+    //     cout<<
+    //     i++;
+    // }
 }
