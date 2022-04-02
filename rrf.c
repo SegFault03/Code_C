@@ -93,17 +93,19 @@ void QSort()
 
 void cal(int number_of_programs)
 {
-    int tq=2,time_used=0;
+    int tq,time_used=0;
     int cp=0;
     int total_tat=0,total_wt=0;
     process *temp=fp;
+    printf("Enter the time quantum of the system: ");
+    scanf("%d",&tq);
     printf("**SCHEDULER STARTS**\n");
     while(fp!=NULL)
     {
        if(temp->at[1]>cp)              //it is impossible that a process->at after the process at fp will match cp(as process array is sorted)
        {
-           cp++;
            printf("CPU idle for %d to %d units of time\n",cp,cp+1);
+           cp++;
            continue;                //Thus cp gets incremented and search continues
        }
         
@@ -123,11 +125,13 @@ void cal(int number_of_programs)
             temp->wt=temp->tat-temp->bt[0];
             total_tat+=temp->tat;
             total_wt+=temp->wt;
-            printf("Process id:%c\tAT:%d\tCT:%d\tTAT:%d\nWT:%d\n",temp->a,temp->at[0],temp->ct,temp->tat,temp->wt);
+            printf("Process id:%c\tAT:%d\tBT:%d\tCT:%d\tTAT:%d\tWT:%d\n",temp->a,temp->bt[0],temp->at[0],temp->ct,temp->tat,temp->wt);
         }
         temp=fp;
     }
-    printf("**SCHEDULER ENDS**\nAverage turnaround time=%d\nAverage waiting time=%d",total_tat/number_of_programs,total_wt/number_of_programs);
+    double avg_waiting_time=total_wt/number_of_programs;
+    double average_tat=total_tat/number_of_programs;
+    printf("**SCHEDULER ENDS**\nAverage turnaround time=%lf\nAverage waiting time=%lf",average_tat,avg_waiting_time);
 }
 
 int main()
