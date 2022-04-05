@@ -102,9 +102,11 @@ int main()
     int max=find_max_deadline(jobs,number_of_jobs);
     int t=0;
     job slots[max];
+    int j=0;
     while(slot_is_full(slots,max)==0)
     {
-        temp_deadline=jobs[i].deadline;
+        
+        temp_deadline=jobs[j].deadline;
         int counter_slots=temp_deadline;
         while(t==0)
         {
@@ -116,6 +118,7 @@ int main()
             counter_slots--;
         }
         counter_slots=0;
+        j++;
     }
     for(i=0;i<max;i++)
     cout<<"Slot "<<i+1<<" "<<slots[i].name<<"\t"<<slots[i].profit<<"\t"<<slots[i].deadline<<endl;
