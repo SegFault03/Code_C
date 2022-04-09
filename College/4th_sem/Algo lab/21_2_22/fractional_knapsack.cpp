@@ -78,42 +78,30 @@ void merge_sort(items *a, int l, int u)
 
 int main()
 {
-    int n,bag,i;
-    int p,w;
-    double temp_wt=0,tot_wt=0,temp_ratio=0;
+    int n,bag,i,total_profit=0;
+    double frac=0;
     char s;
-    // cin>>n;
-    cout<<"Max bag capacity:"<<endl;
+    cout<<"Enter number of items: ";
+    cin>>n;
+    cout<<"Max bag capacity: ";
     cin>>bag;
-    items array[7];
+    items array[n];
     cout<<"Enter items in form: profit weight marker"<<endl;
-    for(int i=0;i<7;i++)
+    for(int i=0;i<n;i++)
     {
-        cin>>p>>w>>s;
-        array[i].profit=p;
-        array[i].weight=w;
-        array[i].marker=s;
-        array[i].ratio=p/w;
+        cin>>array[i].profit>>array[i].weight>>array[i].marker;
+        array[i].ratio=array[i].profit/array[i].weight;
     }
-    merge_sort(array,0,7);
-
+    merge_sort(array,0,n);
+    cout<<"ITEMS\tQUANTITY"<<endl;
     i=0;
-    while(bag>0||i<7)
+    while(i<n)
     {
-        
-        temp_wt=array[i].weight;
-        if(temp_wt>bag)
-        {
-            temp_ratio=bag/temp_wt;
-            tot_wt=temp_ratio;
-        }
-        else
-        {
-            tot_wt=1;
-            bag=bag-(tot_wt*temp_wt);
-        }
-        cout<<array[i].marker<<" "<<tot_wt<<endl;
-        tot_wt=0;
+        frac=array[i].weight<bag?1:((double)bag/(double)array[i].weight);
+        bag-=frac*array[i].weight;
+        total_profit+=frac*array[i].profit;
+        cout<<array[i].marker<<"\t"<<frac<<endl;
         i++;
     }
+    cout<<"MAX PROFIT: "<<total_profit;
 }
